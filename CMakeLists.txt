@@ -7,30 +7,19 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5OpenGL REQUIRED)
 find_package(Qt5X11Extras REQUIRED)
-find_package(OpenGL)
-
-set(OGRE_LOC /home/gernot/src/external/install/ogre3d_v1.8.1)
-
-LINK_DIRECTORIES(
-    ${OGRE_LOC}/lib
-    /home/gernot/src/playground/external/install/boost_v1.54/lib
-  )
+find_package(OpenGL REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system thread)
 
 INCLUDE_DIRECTORIES(
-    ${OGRE_LOC}/include
-    /usr/include/OIS
     /usr/include/OGRE
-    /home/gernot/src/playground/external/install/boost_v1.54/include
   )
 
-set(QOgreWidget_SOURCES 
+
+add_executable(QOgreWidgetDemo   
   QOgreWidget.cpp 
   QOgreWidgetDemo.cpp
   main.cpp
   )
-
-
-add_executable(QOgreWidgetDemo ${QOgreWidget_SOURCES})
 
 qt5_use_modules(QOgreWidgetDemo OpenGL Widgets X11Extras)
 
@@ -38,6 +27,7 @@ target_link_libraries(QOgreWidgetDemo
     ${OPENGL_LIBRARIES}
     OgreMain
     boost_system
+    boost_thread
     OIS
   )
 
