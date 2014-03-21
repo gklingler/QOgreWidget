@@ -3,13 +3,18 @@ cmake_minimum_required(VERSION 2.8.9)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+if(WIN32)
+    set(CMAKE_LIBRARY_PATH  "C:\\Program Files (x86)\\Windows Kits\\8.0\\Lib\\win8\\um\\x64")
+    cmake_policy(SET CMP0020 NEW)   # to avoid cmake warning
+endif()
+
 set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5OpenGL REQUIRED)
 find_package(OpenGL REQUIRED)
-find_package(Boost REQUIRED COMPONENTS system thread)
 if(UNIX)
     find_package(Qt5X11Extras REQUIRED)
+    find_package(Boost REQUIRED COMPONENTS system thread)
 endif()
 
 set(OGRE_RESOURCE_FOLDER ${PROJECT_SOURCE_DIR}/resources)
@@ -23,25 +28,22 @@ if(UNIX)
     set(OGRE_PLUGIN_FOLDER /usr/lib/OGRE/)
 elseif(WIN32)
     include_directories(
-        "${OGRE_ROOT}\\include"
-        "${OGRE_ROOT}\\include\\OGRE"
-        "${OGRE_ROOT}\\include\\OGRE\\RenderSystems\\GL"
-        "${OGRE_ROOT}\\boost"
+        "${OGRE_HOME}\\include"
+        "${OGRE_HOME}\\include\\OGRE"
+        "${OGRE_HOME}\\include\\OGRE\\RenderSystems\\GL"
+        "${OGRE_HOME}\\boost"
     )
     set(BOOST_LINK_LIBS 
         libboost_system-vc100-mt-1_55 
         libboost_thread-vc100-mt-1_55
     )
-    set(CMAKE_LIBRARY_PATH 
-        "C:\\Program Files (x86)\\Windows Kits\\8.0\\Lib\\win8\\um\\x64"
-    )
 
     link_directories(
         ${LINK_DIRECORIES}
-        "${OGRE_ROOT}\\OgreSDK_vc10_v1-9-0\\lib\\Release"
-        "${OGRE_ROOT}\\OgreSDK_vc10_v1-9-0\\boost\\lib"
+        "${OGRE_HOME}\\lib\\Release"
+        "${OGRE_HOME}\\boost\\lib"
     )
-    set(OGRE_PLUGIN_FOLDER "${OGRE_ROOT}\\bin\\Release")
+    set(OGRE_PLUGIN_FOLDER "${OGRE_HOME}\\bin\\Release")
 endif()
 
 add_executable(QOgreWidgetDemo   
