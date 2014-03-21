@@ -1,8 +1,11 @@
 #include "QOgreWidget.hpp"
-#include <QtX11Extras/QX11Info>
 #include <QResizeEvent>
 #include <string>
 #include <cassert>
+
+#ifdef __unix__
+    #include <QtX11Extras/QX11Info>
+#endif
 
 
 QOgreWidget::QOgreWidget(Ogre::Root* ogreRoot, IOgreEventHandler *ogreEventHandler, QWidget* parent) : 
@@ -20,11 +23,16 @@ QOgreWidget::QOgreWidget(Ogre::Root* ogreRoot, IOgreEventHandler *ogreEventHandl
     setFocusPolicy(Qt::StrongFocus);
 
     Ogre::String winHandle;
-    winHandle = Ogre::StringConverter::toString((unsigned long)(QX11Info::display()));
-    winHandle += ":";
-    winHandle += Ogre::StringConverter::toString((unsigned int)(QX11Info::appScreen()));
-    winHandle += ":";
-    winHandle += Ogre::StringConverter::toString((unsigned long)(winId()));
+    #ifdef WIN32
+        // Windows code
+        winHandle += Ogre::StringConverter::toString(this->parentWidget()->winId());
+    #else
+        winHandle = Ogre::StringConverter::toString((unsigned long)(QX11Info::display()));
+        winHandle += ":";
+        winHandle += Ogre::StringConverter::toString((unsigned int)(QX11Info::appScreen()));
+        winHandle += ":";
+        winHandle += Ogre::StringConverter::toString((unsigned long)(winId()));
+    #endif
 
     Ogre::NameValuePairList params;
     params["parentWindowHandle"] = winHandle;
