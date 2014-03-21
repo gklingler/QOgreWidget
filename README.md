@@ -19,7 +19,8 @@ Windows
 prerequisites:
 * install OGRE 1.9 SDK for Visual C++ 2010 32-bit
 * install Qt 5.2.1 for Windows 32-bit (VS 2010, OpenGL)
-* The environment variable OGRE_HOME must point to the OGRE SDK
+* the environment variable OGRE_HOME must point to the OGRE SDK
+* the environment variable PATH must contain: PATH_TO_QT\msvc2010_opengl\bin and %OGRE_HOME%\bin\Release
 
 configure, build and run the example:
 * run ./configure.bat to configure
