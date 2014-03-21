@@ -7,6 +7,7 @@ Linux
 -----
 prerequisites:
 * OGRE 1.9
+* QT 5.2
 * boost
 
 configure, build and run the example:
