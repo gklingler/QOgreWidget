@@ -4,7 +4,7 @@
 #include "QCameraMan.h"
 
 #include <QGroupBox>
-#include <QRadioButton>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 
@@ -82,17 +82,33 @@ void QOgreWidgetDemo::createScene() {
     light->setPosition(20.0f, 80.0f, 50.0f);
 }
 
-
+    
 void QOgreWidgetDemo::createQtWidgets() {
     QGroupBox *mainGroup = new QGroupBox;
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mOgreWidget = new QOgreWidget(mOgreRoot, this, mainGroup);
-    mainLayout->addWidget(new QRadioButton(tr("&Radio button 1")));
-    mainLayout->addWidget(new QRadioButton(tr("&Radio button 2")));
+    QPushButton *buttonZoomIn = new QPushButton(tr("Zoom &In"));
+    QPushButton *buttonZoomOut = new QPushButton(tr("Zoom &Out"));
+    mainLayout->addWidget(buttonZoomIn);
+    mainLayout->addWidget(buttonZoomOut);
+    connect(buttonZoomIn, SIGNAL(released()), this, SLOT(onZoomIn()));
+    connect(buttonZoomOut, SIGNAL(released()), this, SLOT(onZoomOut()));
+    
     mainLayout->addWidget(mOgreWidget);
     mainGroup->setLayout(mainLayout);
     setCentralWidget(mainGroup);
 }
+
+
+void QOgreWidgetDemo::onZoomIn() {
+    mCamera->moveRelative(Ogre::Vector3(0, 0, -10.0));
+}
+
+
+void QOgreWidgetDemo::onZoomOut() {
+    mCamera->moveRelative(Ogre::Vector3(0, 0, 10));
+}
+
 
 void QOgreWidgetDemo::ogreMousePressEvent(QMouseEvent *event) {
     mCameraMan->injectMouseDown(*event);

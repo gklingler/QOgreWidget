@@ -37,6 +37,11 @@ private:
     int mMouseMoveXOld;
     int mMouseMoveYOld;
     
+    // button event handler
+private slots:
+    void onZoomIn();
+    void onZoomOut();
+    
     // implements IQOgreEventHandler
     virtual void ogrePaintEvent(QPaintEvent *pEvent) {}
     virtual void ogreResizeEvent(QResizeEvent *rEvent) {}
