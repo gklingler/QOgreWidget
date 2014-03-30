@@ -64,7 +64,7 @@ void QOgreWidgetDemo::createScene() {
     mOgreViewport = mOgreWidget->getEmbeddedOgreWindow()->addViewport(mCamera);
     
     this->resize(640, 480);
-    this->setWindowTitle("Most Basic Qt/Ogre Setup");
+    this->setWindowTitle("QOgreWidget demo");
     
     // Set the scene's ambient light
     mSceneManager->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
