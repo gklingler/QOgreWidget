@@ -1,7 +1,7 @@
 QOgreWidget
 ===========
 
-QOgreWidget is a QT5 (Desktop) Widget that embeds the Ogre3D graphics engine. Currently it builds and rund on Linux and Windows7.
+QOgreWidget is a QT5 (Desktop) Widget that embeds the Ogre3D graphics engine. Currently it builds and runs on Linux and Windows7.
 
 Linux
 -----
@@ -28,4 +28,4 @@ configure, build and run the example:
 * open the generated Visual Studio 2010 solution file located in the build directory
 * after build (just building the "Release" version is supported), you can run the demo QOgreWidgetDemo.exe
 
-for more info also look [here](http://whimdump.net/blog/?p=111)
+for more info also look [here](http://gernotklingler.com/blog/a-qt5-widget-for-ogre3d/)
