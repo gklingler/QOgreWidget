@@ -9,6 +9,7 @@ prerequisites:
 * OGRE 1.9
 * QT 5.2
 * boost
+* libglew-dev
 
 configure, build and run the example:
 * run ./configure.sh to configure
