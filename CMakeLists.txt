@@ -15,6 +15,7 @@ find_package(OpenGL REQUIRED)
 if(UNIX)
     find_package(Qt5X11Extras REQUIRED)
     find_package(Boost REQUIRED COMPONENTS system thread)
+    find_package(GLEW REQUIRED)
 endif()
 
 set(OGRE_RESOURCE_FOLDER ${PROJECT_SOURCE_DIR}/resources)
